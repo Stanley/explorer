@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Bagate.la Explorer</title>
+    <link href="style.css" media="all" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="content"></div>
+    <ul id="nodes-list">
+      <li><input type="text" placeholder="filter" /></li>
+      <li>&nobr;</li>
+    </ul>
+
+    <!--Dependencies-->
+    <script type="text/javascript" src="deps/json2.js"></script>
+    <script type="text/javascript" src="deps/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="deps/underscore-min.js"></script>
+    <script type="text/javascript" src="deps/backbone-min.js"></script>
+
+    <!--Templates-->
+    <script type="text/template" id="node">
+      <a href="<%= url() %>"><b><%= get('name') %></b></a>
+    </script>
+
+    <script type="text/template" id="details">
+      <h1><%= get('name') %></h1>
+    </script>
+
+    <script type="text/template" id="connection">
+      <h3>
+        &rarr; <a href="<%=this.inV().url()%>" class="inV"><%= this.inV().get('name') %></a> (0.0 km)
+      </h3>
+    </script>
+
+    <script type="text/template" id="timetable">
+      <div class="line"><%= get('line') %></div>
+      <img src="<%= chart_url() %>" />
+    </script>
+
+    <!--Internals-->
+    <script type="text/javascript" src="lib/models/timetable.js"></script>
+    <script type="text/javascript" src="lib/models/node.js"></script>
+    <script type="text/javascript" src="lib/models/nodes.js"></script>
+    <script type="text/javascript" src="lib/models/relationship.js"></script>
+    <script type="text/javascript" src="lib/models/relationships.js"></script>
+    <script type="text/javascript" src="lib/views/node_view.js"></script>
+    <script type="text/javascript" src="lib/views/nodes_view.js"></script>
+    <script type="text/javascript" src="lib/views/detail_view.js"></script>
+    <script type="text/javascript" src="lib/views/connection_view.js"></script>
+    <script type="text/javascript" src="lib/views/timetable_view.js"></script>
+    <script type="text/javascript" src="lib/router.js"></script>
+
+    <!--Initialization-->
+    <script type="text/javascript">
+      $(document).ready(function(){
+        new NodesView();
+      })
+    </script>
+  </body>
+</html>
+
