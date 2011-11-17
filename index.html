@@ -18,16 +18,25 @@
 
     <!--Templates-->
     <script type="text/template" id="node">
-      <a href="<%= url() %>"><b><%= get('name') %></b></a>
+      <a href="<%= url() + '/outE' %>"><b><%= get('name') %></b></a>
     </script>
 
     <script type="text/template" id="details">
       <h1><%= get('name') %></h1>
+      <div class="direction">
+        Połączenia <%= this.incomming() ? "przychodzące" : "wychodzące"  %> 
+        (<a href="<%= this.toggle_url() %>">zmień</a>):
+      </div>
     </script>
 
     <script type="text/template" id="connection">
       <h3>
-        &rarr; <a href="<%=this.inV().url()%>" class="inV"><%= this.inV().get('name') %></a> (0.0 km)
+        <span class="outV">
+          <a href="<%=this.outV().url()%>"><%= this.outV().get('name') %></a> (0.0 km)
+        </span>
+        <span class="inV">
+          <a href="<%=this.inV().url()%>"><%= this.inV().get('name') %></a> (0.0 km)
+        </span>
       </h3>
     </script>
 
