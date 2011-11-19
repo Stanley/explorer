@@ -55,6 +55,17 @@
   margin: 20px 0 0 0;
 }
 
+#content h1 a{
+  color:#ddd;
+  text-decoration: none;
+  font-size: 18px
+}
+
+#content h1 a:hover{
+  color:#bbb;
+  text-decoration: underline;
+}
+
 .timetable {
   border: 15px #F6F6F6 solid;
   display: inline-block;
@@ -91,4 +102,37 @@
 
 .inE .connection h3:before{
   content: "\2190"
+}
+
+.welcome{
+  margin: 100px;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 30px;
+  width: 600px;
+  text-align: justify
+}
+
+.welcome p{
+  text-align: center
+}
+
+.welcome input[type="text"]{
+  padding: 10px;
+  width: 400px;
+  margin: 30px 0;
+}
+
+.welcome input[type="button"]{
+  margin: 0;
+  height: 40px
+}
+
+a[rel="me"]{
+  color: gray;
+  text-decoration: none;
+}
+
+a[rel="me"]:hover{
+  text-decoration: underline
 }

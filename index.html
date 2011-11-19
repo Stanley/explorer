@@ -1,10 +1,28 @@
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Bagate.la Explorer</title>
     <link href="style.css" media="all" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div id="content"></div>
+    <div id="content">
+      <div class="welcome">
+        <h2>Witaj,</h2>
+        oto przykład użycia <a
+          href="http://developer.bagate.la/GRAPH.1.html">API grafu</a>
+        komunikacji miejskiej. Wybierz dowolny przystanek z listy obok aby
+        zobaczyć jego linie i kierunki odjazdów (lub przyjazdów) tych linii.
+        Klikając ten sam link środkowym przyciskiem myszy, możesz zobaczyć
+        surowe dane JSON, które otrzymuje przeglądarka. Adres grafu który
+        chcesz przeglądać:
+        <p>
+          <input type="text" id="graphUrl" /><input id="updateButton" type="button" value="zmień" disabled="disabled" />
+        </p>
+        Dowiedz się więcej o projekcie bagate.la na stronie: <a href="http://developer.bagate.la">developer.bagate.la</a>.
+        <br />
+        <a href="https://plus.google.com/117723620625104550881" rel="me">Stanisław Wasiutyński</a>
+      </div>
+    </div>
     <ul id="nodes-list">
       <li><input type="text" placeholder="filter" /></li>
       <li>&nobr;</li>
@@ -22,7 +40,7 @@
     </script>
 
     <script type="text/template" id="details">
-      <h1><%= get('name') %></h1>
+      <h1><%= get('name') %> <a href="<%=url()%>">&para;</a></h1>
       <div class="direction">
         Połączenia <%= this.incomming() ? "przychodzące" : "wychodzące"  %> 
         (<a href="<%= this.toggle_url() %>">zmień</a>):
@@ -32,10 +50,10 @@
     <script type="text/template" id="connection">
       <h3>
         <span class="outV">
-          <a href="<%=this.outV().url()%>"><%= this.outV().get('name') %></a> (0.0 km)
+          <a href="<%=this.outV().url()+'/'+this.options.dir%>"><%= this.outV().get('name') %></a> (0.0 km)
         </span>
         <span class="inV">
-          <a href="<%=this.inV().url()%>"><%= this.inV().get('name') %></a> (0.0 km)
+          <a href="<%=this.inV().url()+'/'+this.options.dir%>"><%= this.inV().get('name') %></a> (0.0 km)
         </span>
       </h3>
     </script>
@@ -51,6 +69,7 @@
     <script type="text/javascript" src="lib/models/nodes.js"></script>
     <script type="text/javascript" src="lib/models/relationship.js"></script>
     <script type="text/javascript" src="lib/models/relationships.js"></script>
+    <script type="text/javascript" src="lib/views/home_view.js"></script>
     <script type="text/javascript" src="lib/views/node_view.js"></script>
     <script type="text/javascript" src="lib/views/nodes_view.js"></script>
     <script type="text/javascript" src="lib/views/detail_view.js"></script>
@@ -61,7 +80,7 @@
     <!--Initialization-->
     <script type="text/javascript">
       $(document).ready(function(){
-        new NodesView();
+          Home = new HomeView()
       })
     </script>
   </body>
